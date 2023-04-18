@@ -10,7 +10,7 @@ function HomePage() {
         title="This Project!"
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam bibendum elit non mauris placerat, a lacinia nibh euismod. Fusce euismod aliquam enim, a volutpat velit tincidunt non."
         buttonText="Learn More"
-        link="#"
+        link=""
         />
       </div>
     </div>

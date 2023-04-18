@@ -1,0 +1,25 @@
+{
+  "articles": [
+    {
+      "id": 1,
+      "title": "A Beginner's Guide to React",
+      "content": "In this article, we'll explore the basics of React and how to build a simple web application using React.",
+      "author": "John Doe",
+      "date": "2022-01-01"
+    },
+    {
+      "id": 2,
+      "title": "Introduction to Node.js",
+      "content": "Node.js is a powerful platform for building scalable and efficient server-side applications. In this article, we'll explore the basics of Node.js and how to get started with it.",
+      "author": "Jane Smith",
+      "date": "2022-02-01"
+    },
+    {
+      "id": 3,
+      "title": "Advanced CSS Techniques",
+      "content": "CSS can be used to create stunning visual effects and layouts on the web. In this article, we'll explore some advanced techniques for working with CSS, including flexbox, grid, and animations.",
+      "author": "Bob Johnson",
+      "date": "2022-03-01"
+    }
+  ]
+}
