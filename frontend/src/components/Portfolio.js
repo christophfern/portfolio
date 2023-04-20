@@ -4,7 +4,7 @@ function Portfolio() {
   return (
     <div>
       {/* Work Experience section */}
-      <section className="bg-nature-100 py-12">
+      <section className="bg-accent-100 py-12">
            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
              <h2 className="text-3xl font-bold text-primary-500 mb-4">Work Experience</h2>
           <div class="flex flex-wrap -mx-2">
@@ -44,7 +44,7 @@ function Portfolio() {
      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
        <h2 className="text-3xl font-bold text-white mb-4">Projects</h2>
        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-         <div className="bg-secondary-700 p-6 rounded-lg shadow-lg">
+         <div className="bg-secondary-400 p-6 rounded-lg shadow-lg">
            <h3 className="text-2xl font-bold text-white mb-2">Project 1</h3>
            <p className="text-secondary-200 mb-4">Description of project.</p>
            <ul className="list-disc ml-6 text-secondary-100">
@@ -53,7 +53,7 @@ function Portfolio() {
              <li>Feature or functionality of project</li>
            </ul>
          </div>
-         <div className="bg-secondary-700 p-6 rounded-lg shadow-lg">
+         <div className="bg-secondary-400 p-6 rounded-lg shadow-lg">
            <h3 className="text-2xl font-bold text-white mb-2">Project 2</h3>
            <p className="text-secondary-200 mb-4">Description of project.</p>
            <ul className="list-disc ml-6 text-secondary-100">
@@ -67,7 +67,7 @@ function Portfolio() {
    </section>
 
       {/* Skills section */}
-    <section className="bg-nature-100 py-12">
+    <section className="bg-accent-100 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-primary-500 mb-4">Skills</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -109,10 +109,10 @@ function Portfolio() {
      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-white mb-6">Resume and Cover Letter</h2>
         <div className="flex space-x-4">
-          <a href="#" className="bg-secondary-700 text-white py-2 px-4 rounded-md font-medium hover:bg-nature-400 ml-4 mr-4">
+          <a href="#" className="bg-secondary-400 text-white py-2 px-4 rounded-md font-medium hover:bg-accent-400 ml-4 mr-4">
             Download Resume
           </a>
-          <a href="#" className="bg-secondary-700 text-white py-2 px-4 rounded-md font-medium hover:bg-nature-400 ml-4 mr-4">
+          <a href="#" className="bg-secondary-400 text-white py-2 px-4 rounded-md font-medium hover:bg-accent-400 ml-4 mr-4">
             Download Cover Letter
           </a>
         </div>
