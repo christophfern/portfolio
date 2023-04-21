@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import testData from '../resources/testData.json';
+import testData from './test-data/blog-test-data.json';
+import { ApiEnum } from './enum/ApiEnum';
+import { apiUrl } from './config/Config';
 
 function PersonalBlog() {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    //    fetch("/api/get-personal-articles/v0")
-    //      .then((res) => res.json())
-    //      .then((data) => setArticles(data.articles))
-    //      .catch((err) => console.log(err));
+        fetch(apiUrl(ApiEnum.GET_PERSONAL_BLOG))
+          .then((res) => res.json())
+          .then((data) => setArticles(data.articles))
+          .catch((err) => console.log(err));
     setArticles(testData.articles);
   }, []);
 
