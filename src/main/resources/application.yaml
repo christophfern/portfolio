@@ -1,2 +1,8 @@
 server:
-  port: 8081
+  port: 8080
+spring:
+  application:
+    name: my-app
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher

@@ -11,7 +11,7 @@ function PersonalBlog() {
           .then((res) => res.json())
           .then((data) => setArticles(data.articles))
           .catch((err) => console.log(err));
-    setArticles(testData.articles);
+    //setArticles(testData.articles);
   }, []);
 
   return (

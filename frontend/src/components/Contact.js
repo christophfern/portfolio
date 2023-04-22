@@ -21,7 +21,7 @@ function Contact() {
     event.preventDefault();
     try {
       const response = await axios.post(apiUrl(ApiEnum.POST_CONTACT_ME), formData);
-      if (response.status === 200) {
+      if (response.status === 201) {
         setFormSubmitted(true);
         setFormSubmitError(false);
       } else {
