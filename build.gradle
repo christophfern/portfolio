@@ -25,9 +25,10 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	runtimeOnly 'com.h2database:h2'
 	implementation 'org.hibernate.validator:hibernate-validator:8.0.0.Final'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+//	implementation 'com.amazonaws:aws-java-sdk-s3:1.12.452'
+	implementation 'com.amazonaws:aws-java-sdk:1.12.452'
 
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	compileOnly 'org.projectlombok:lombok'
