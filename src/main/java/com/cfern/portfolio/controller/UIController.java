@@ -1,4 +1,4 @@
-package com.cfern.portfolio.controllers;
+package com.cfern.portfolio.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;

@@ -7,7 +7,7 @@ function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
+    phoneNumber: '',
     message: '',
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -20,6 +20,7 @@ function Contact() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      console.log(formData);
       const response = await axios.post(apiUrl(ApiEnum.POST_CONTACT_ME), formData);
       if (response.status === 201) {
         setFormSubmitted(true);
@@ -78,8 +79,8 @@ function Contact() {
               </label>
               <input
                 type="tel"
-                id="phone"
-                name="phone"
+                id="phoneNumber"
+                name="phoneNumber"
                 pattern="^\d{3}[-]?\d{3}[-]?\d{4}$"
                 className="w-full border-gray-400 border-2 py-2 px-4 rounded-md focus:outline-none focus:border-primary-500"
                 placeholder=""

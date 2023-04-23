@@ -1,22 +1,35 @@
-package com.cfern.portfolio.controllers;
+package com.cfern.portfolio.controller;
 
+import com.cfern.portfolio.http.request.ContactMeRequest;
 import com.cfern.portfolio.http.response.BlogResponse;
+import com.cfern.portfolio.service.ContactMeMessageService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/api")
+@RequiredArgsConstructor
 public class APIController {
 
+    @NonNull
     private final ObjectMapper mapper;
 
-    public APIController(ObjectMapper mapper) {
-        this.mapper = mapper;
-    }
+    @NonNull
+    private final ContactMeMessageService contactMeMessageService;
 
     @RequestMapping
     @ResponseStatus(HttpStatus.NOT_FOUND)
@@ -26,22 +39,29 @@ public class APIController {
     }
 
     @PostMapping("/post-contact-me/v0")
-    public ResponseEntity<Void> postContactMe(HttpServletRequest request) {
+    public ResponseEntity<Void> postContactMe(HttpServletRequest request, @RequestBody @Valid ContactMeRequest requestBody) throws JsonProcessingException {
         ResponseEntity<Void> response = new ResponseEntity<>(HttpStatus.CREATED);
+        contactMeMessageService.processContactMeMessage(requestBody);
         return response;
     }
 
     @GetMapping("/get-technical-articles/v0")
     public ResponseEntity<BlogResponse> getTechnicalPortfolio() throws JsonProcessingException {
         BlogResponse blogResponse = mapper.readValue(BlOG_TEST_DATA, BlogResponse.class);
-        ResponseEntity<BlogResponse> response = ResponseEntity.ok(blogResponse);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.add("Access-Control-Allow-Origin", "*");
+        ResponseEntity<BlogResponse> response = new ResponseEntity<>(blogResponse, httpHeaders, HttpStatus.OK);
         return response;
     }
 
     @GetMapping("/get-personal-articles/v0")
     public ResponseEntity<BlogResponse> getPersonalPortfolio() throws JsonProcessingException {
         BlogResponse blogResponse = mapper.readValue(BlOG_TEST_DATA, BlogResponse.class);
-        ResponseEntity<BlogResponse> response = ResponseEntity.ok(blogResponse);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.add("Access-Control-Allow-Origin", "*");
+        ResponseEntity<BlogResponse> response = new ResponseEntity<>(blogResponse, httpHeaders, HttpStatus.OK);
         return response;
     }
 
