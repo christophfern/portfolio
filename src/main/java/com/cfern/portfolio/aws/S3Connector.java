@@ -9,46 +9,72 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+/**
+ * The connector for S3.
+ * Note that if another bucket is introduced to this project (probably not). Then create
+ * subclasses for each bucket and have the extend this class.
+ */
 @Slf4j
 @Component
 public class S3Connector {
 
-    private final String bucketName;
+  private final String bucketName;
 
-    private final AmazonS3 s3Client;
+  private final AmazonS3 s3Client;
 
-    public S3Connector(@Value("${aws.s3.bucket.name:\"\"}") String bucketName) {
-        if (bucketName == null || bucketName.isEmpty()) {
-            throw new IllegalArgumentException("Please provide a bucket name");
-        }
-
-        this.bucketName = bucketName;
-        this.s3Client = AmazonS3ClientBuilder.standard()
-                .withRegion(Regions.US_EAST_1)
-                .build();
+  /**
+   * Creates a new instance of S3Connector. This instance has a connection to the bucketName.
+   *
+   * @param bucketName the name of the bucket to connect to
+   */
+  public S3Connector(@Value("${aws.s3.bucket.name:\"\"}") String bucketName) {
+    if (bucketName == null || bucketName.isEmpty()) {
+      throw new IllegalArgumentException("Please provide a bucket name");
     }
 
-    public void uploadFile(String key, String fileContent) {
-        s3Client.putObject(bucketName, key, fileContent);
-    }
+    this.bucketName = bucketName;
+    this.s3Client = AmazonS3ClientBuilder.standard()
+        .withRegion(Regions.US_EAST_1)
+        .build();
+  }
 
-    public void getFilesForPrefix(String folderPath) {
-        ListObjectsV2Request request = new ListObjectsV2Request();
-        request.setBucketName(bucketName);
-        request.setPrefix(folderPath);
-        ListObjectsV2Result result = s3Client.listObjectsV2(request);
+  /**
+   * uploads a file to S3.
+   *
+   * @param key         the key of the file to upload
+   * @param fileContent the content of the file to upload
+   */
+  public void uploadFile(String key, String fileContent) {
+    s3Client.putObject(bucketName, key, fileContent);
+  }
 
-    }
+  /**
+   * gets all files from S3 under a prefix.
+   *
+   * @param folderPath the prefix to get all files from
+   */
+  public void getFilesForPrefix(String folderPath) {
+    ListObjectsV2Request request = new ListObjectsV2Request();
+    request.setBucketName(bucketName);
+    request.setPrefix(folderPath);
+    ListObjectsV2Result result = s3Client.listObjectsV2(request);
 
-    public boolean doesKeyExist(String folderPath) {
-        ListObjectsV2Request request = new ListObjectsV2Request();
-        request.setBucketName(bucketName);
-        request.setPrefix(folderPath);
+  }
 
-        ListObjectsV2Result result = s3Client.listObjectsV2(request);
+  /**
+   * checks if there are any files under the specified folderPath.
+   *
+   * @param folderPath the folderPath to check
+   */
+  public boolean doesKeyExist(String folderPath) {
+    ListObjectsV2Request request = new ListObjectsV2Request();
+    request.setBucketName(bucketName);
+    request.setPrefix(folderPath);
 
-        return result.getObjectSummaries().size() > 0;
-    }
+    ListObjectsV2Result result = s3Client.listObjectsV2(request);
+
+    return result.getObjectSummaries().size() > 0;
+  }
 
 
 }

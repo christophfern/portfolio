@@ -1,7 +1,7 @@
 package com.cfern.portfolio.service;
 
 import com.cfern.portfolio.aws.S3Connector;
-import com.cfern.portfolio.aws.SNSConnector;
+import com.cfern.portfolio.aws.SnsConnector;
 import com.cfern.portfolio.http.request.ContactMeRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,7 +24,7 @@ public class ContactMeMessageService {
   private final S3Connector s3Connector;
 
   @NonNull
-  private final SNSConnector snsConnector;
+  private final SnsConnector snsConnector;
 
   @NonNull
   private final ObjectMapper objectMapper;
@@ -44,7 +44,7 @@ public class ContactMeMessageService {
    * @param prefix       prefix to prepend to key when saving files to S3
    */
   public ContactMeMessageService(@NonNull S3Connector s3Connector,
-                                 @NonNull SNSConnector snsConnector,
+                                 @NonNull SnsConnector snsConnector,
                                  @NonNull ObjectMapper objectMapper,
                                  @NonNull @Value("${aws.s3.bucket.contactme.prefix}")
                                      String prefix) {
