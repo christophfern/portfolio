@@ -13,7 +13,8 @@ public class UiController {
    * Routing every that is not /api/** to the index.html which is the React app
    * The React app with control the routing
    */
-  @RequestMapping(value = {"/", "/{x:[\\w\\-]+}", "/{x:^(?!api$).*$}/**/{y:[\\w\\-]+}"})
+  @RequestMapping(value = {"/", "/{x:[\\w\\-]+}", "/{x:(^(?!api$) && ^(?!aws$) )" +
+      ".*$}/**/{y:[\\w\\-]+}"})
   public String getIndex(HttpServletRequest request) {
     return "/index.html";
   }
