@@ -3,7 +3,27 @@ module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   theme: {
     extend: {
+      fonts: {
+        heading: {
+            family: "Fraunces",
+            weight: "medium"
+        },
+        body: {
+            family: "Epilogue",
+            weight: "regular",
+            color: "#EBECEF"
+        }
+      }
       colors: {
+        background: {
+            500: '#a8afcc' //full page background
+        }
+        cardColor: {
+            500: '#080e26' //inner card color
+        }
+        accenta: {
+            500: '#8C98CA'
+        }
         primary: {
           50: '#f5f9f7',
           100: '#ebf3ef',
