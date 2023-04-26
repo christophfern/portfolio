@@ -19,7 +19,7 @@ function Header() {
   return (
     <header className="bg-accenta">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-wrap items-center justify-between">
-        <h1 className="text-3xl font-header text-header">Chris Fernandez</h1>
+        <h1 className="text-3xl font-header text-accent">Chris Fernandez</h1>
         <button className="block lg:hidden focus:outline-none" onClick={toggleMenu}>
           <MenuIcon className="h-6 w-6" aria-hidden="true" />
             <div

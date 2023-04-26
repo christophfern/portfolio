@@ -37,7 +37,7 @@ function Contact() {
   };
 
   return (
-    <div className="max-w-2xl bg-cardcolor mx-auto px-4 py-8">
+    <div className="max-w-2xl bg-cardcolor mx-auto px-4 py-8 shadow-lg rounded-lg">
       {formSubmitted ? (
         <div className="font-body text-body px-4 py-2 rounded-md mb-4">
           Thank you for contacting us!
@@ -52,7 +52,7 @@ function Contact() {
               type="text"
               id="name"
               name="name"
-              className="w-full font-body text-black py-2 px-4 rounded-md focus:outline-none focus:border-primary-500"
+              className="w-full font-body text-black py-2 px-4 rounded-md focus:outline-none"
               placeholder=""
               value={formData.name}
               onChange={handleInputChange}
@@ -67,7 +67,7 @@ function Contact() {
               type="email"
               id="email"
               name="email"
-              className="w-full font-body text-black border-2 py-2 px-4 rounded-md focus:outline-none focus:border-accent"
+              className="w-full font-body text-black border-2 py-2 px-4 rounded-md focus:outline-none"
               value={formData.email}
               onChange={handleInputChange}
               required
@@ -82,7 +82,7 @@ function Contact() {
                 id="phoneNumber"
                 name="phoneNumber"
                 pattern="^\d{3}[-]?\d{3}[-]?\d{4}$"
-                className="w-full text-black border-gray-400 border-2 py-2 px-4 rounded-md focus:outline-none focus:border-primary-500"
+                className="w-full text-black border-gray-400 border-2 py-2 px-4 rounded-md "
                 placeholder=""
                 value={formData.phoneNumber}
                 onChange={handleInputChange}
@@ -96,7 +96,7 @@ function Contact() {
               id="message"
               name="message"
               rows="5"
-              className="w-full text-black  border-2 py-2 px-4 rounded-md focus:outline-none focus:border-primary-500"
+              className="w-full text-black  border-2 py-2 px-4 rounded-md"
               placeholder="How can we help you?"
               value={formData.message}
               onChange={handleInputChange}

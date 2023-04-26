@@ -5,7 +5,7 @@ import PortfolioProject from './PortfolioProject';
 
 function Portfolio() {
   return (
-    <div>
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       {/* Work Experience section */}
       <section className="bg-cardcolor rounded-lg shadow-lg py-12 mb-8">
            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

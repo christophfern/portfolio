@@ -12,20 +12,21 @@ import { ApiEnum } from './components/enum/ApiEnum';
 
 function App() {
   return (
-   <Router>
-         <div className="bg-background">
 
-           <Header />
-           <div className="bg-background mx-auto px-4 sm:px-6 lg:px-8 py-10">
-           <Routes>
-             <Route path="/" element={<Home />} />
-             <Route path="/portfolio" element={<Portfolio />} />
-             <Route path="/technical-blog" element={<Blog url={ApiEnum.GET_TECHNICAL_BLOG}/>} />
-             <Route path="/personal-blog" element={<Blog url={ApiEnum.GET_PERSONAL_BLOG}/> } />
-             <Route path="/contact" element={<Contact />} />
-           </Routes>
-           </div>
-         </div>
+   <Router>
+
+
+       <Header />
+       <div className="bg-background mx-auto px-4 sm:px-6 lg:px-8 py-10 h-screen">
+       <Routes>
+         <Route path="/" element={<Home />} />
+         <Route path="/portfolio" element={<Portfolio />} />
+         <Route path="/technical-blog" element={<Blog url={ApiEnum.GET_TECHNICAL_BLOG}/>} />
+         <Route path="/personal-blog" element={<Blog url={ApiEnum.GET_PERSONAL_BLOG}/> } />
+         <Route path="/contact" element={<Contact />} />
+       </Routes>
+       </div>
+
     </Router>
   );
 }

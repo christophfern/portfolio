@@ -4,24 +4,25 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-              body: ['Epilogue', 'sans-serif'],
-              header : ['Fraunces', 'sans-serif']
+              body: ['Roboto Slab', 'sans-serif'],
+              header : ['Roboto', 'sans-serif']
             },
             fontWeight: {
               body: 400,
-              header: 500
+              header: 400
             },
             textColor: {
-                body: '#EBECEF',
-                header: '#FFFFFF',
-                accent: '#080e26'
+                body: '#D6E5EF',
+                header: '#60A9FF',
+                accent: '#202733'
             },
 
       colors: {
-        background: '#a8afcc',
+        background: '#171B21',
 
-        cardcolor: '#080e26',
-        accenta:  '#8C98CA',
+        cardcolor: '#202733',
+        accenta:  '#599CE8',
+        accentb:  '#73B3F3',
 
         primary: {
           50: '#f5f9f7',
