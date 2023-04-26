@@ -6,7 +6,7 @@ import {PageEnum} from './enum/PageEnum';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const selectedClass = "text-accent-700";
+  const selectedClass = "text-accent";
   let currentPage = useLocation().pathname
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -17,9 +17,9 @@ function Header() {
   }
 
   return (
-    <header className="bg-primary-800 text-white">
+    <header className="bg-accenta">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-wrap items-center justify-between">
-        <h1 className="text-3xl font-bold">Chris Fernandez</h1>
+        <h1 className="text-3xl font-header text-header">Chris Fernandez</h1>
         <button className="block lg:hidden focus:outline-none" onClick={toggleMenu}>
           <MenuIcon className="h-6 w-6" aria-hidden="true" />
             <div
@@ -40,8 +40,8 @@ function Header() {
             <li>
               <Link
                 to={PageEnum.Home}
-                className={`${ isSelectedClass(PageEnum.Home) ?  selectedClass : '' }
-                block rounded-lg text-accent-100 lg:inline-block hover:text-accent-700 transition-colors duration-300` }
+                className={`${ isSelectedClass(PageEnum.Home) ?  selectedClass : 'text-body font-body' }
+                block rounded-lg lg:inline-block hover:text-accent transition-colors duration-300` }
               >
                 Home
               </Link>
@@ -49,8 +49,8 @@ function Header() {
             <li>
               <Link
                 to={PageEnum.Portfolio}
-                className={`${ isSelectedClass(PageEnum.Portfolio) ? selectedClass : ''}
-                                block rounded-lg text-accent-100 lg:inline-block hover:text-accent-700 transition-colors duration-300` }
+                className={`${ isSelectedClass(PageEnum.Portfolio) ?  selectedClass : 'text-body font-body' }
+                    block rounded-lg lg:inline-block hover:text-accent transition-colors duration-300` }
               >
                 Portfolio
               </Link>
@@ -58,8 +58,8 @@ function Header() {
             <li>
               <Link
                 to={PageEnum.TechnicalBlog}
-                className={`${ isSelectedClass(PageEnum.TechnicalBlog) ? selectedClass : '' }
-                 block rounded-lg text-accent-100 lg:inline-block hover:text-accent-700 transition-colors duration-300` }
+                className={`${ isSelectedClass(PageEnum.TechnicalBlog) ?  selectedClass : 'text-body font-body' }
+                    block rounded-lg lg:inline-block hover:text-accent transition-colors duration-300` }
               >
                 Technical Blog
               </Link>
@@ -67,8 +67,8 @@ function Header() {
             <li>
               <Link
                 to={PageEnum.PersonalBlog}
-                className={`${ isSelectedClass(PageEnum.PersonalBlog) ? selectedClass : '' }
-                 block rounded-lg text-accent-100 lg:inline-block hover:text-accent-700 transition-colors duration-300` }
+                className={`${ isSelectedClass(PageEnum.PersonalBlog) ?  selectedClass : 'text-body font-body' }
+                   block rounded-lg lg:inline-block hover:text-accent transition-colors duration-300` }
               >
                 Personal Blog
               </Link>
@@ -76,8 +76,8 @@ function Header() {
             <li>
               <Link
                 to={PageEnum.Contact}
-                className={`${ isSelectedClass(PageEnum.Contact) ? selectedClass : '' }
-                  block rounded-lg text-accent-100 lg:inline-block hover:text-accent-700 transition-colors duration-300` }
+                className={`${ isSelectedClass(PageEnum.Contact) ?  selectedClass : 'text-body font-body' }
+                   block rounded-lg lg:inline-block hover:text-accent transition-colors duration-300` }
               >
                 Contact
               </Link>

@@ -37,22 +37,22 @@ function Contact() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-8">
+    <div className="max-w-2xl bg-cardcolor mx-auto px-4 py-8">
       {formSubmitted ? (
-        <div className="bg-green-100 text-green-900 px-4 py-2 rounded-md mb-4">
+        <div className="font-body text-body px-4 py-2 rounded-md mb-4">
           Thank you for contacting us!
         </div>
       ) : (
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="name" className="block text-gray-700 font-bold mb-2">
+            <label htmlFor="name" className="block font-body text-body mb-2">
               Name *
             </label>
             <input
               type="text"
               id="name"
               name="name"
-              className="w-full border-gray-400 border-2 py-2 px-4 rounded-md focus:outline-none focus:border-primary-500"
+              className="w-full font-body text-black py-2 px-4 rounded-md focus:outline-none focus:border-primary-500"
               placeholder=""
               value={formData.name}
               onChange={handleInputChange}
@@ -60,21 +60,21 @@ function Contact() {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
+            <label htmlFor="email" className="block font-body text-body mb-2">
               Email *
             </label>
             <input
               type="email"
               id="email"
               name="email"
-              className="w-full border-gray-400 border-2 py-2 px-4 rounded-md focus:outline-none focus:border-primary-500"
+              className="w-full font-body text-black border-2 py-2 px-4 rounded-md focus:outline-none focus:border-accent"
               value={formData.email}
               onChange={handleInputChange}
               required
             />
           </div>
           <div className="mb-4">
-              <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
+              <label htmlFor="email" className="block font-body text-body mb-2">
                 Phone
               </label>
               <input
@@ -82,21 +82,21 @@ function Contact() {
                 id="phoneNumber"
                 name="phoneNumber"
                 pattern="^\d{3}[-]?\d{3}[-]?\d{4}$"
-                className="w-full border-gray-400 border-2 py-2 px-4 rounded-md focus:outline-none focus:border-primary-500"
+                className="w-full text-black border-gray-400 border-2 py-2 px-4 rounded-md focus:outline-none focus:border-primary-500"
                 placeholder=""
                 value={formData.phoneNumber}
                 onChange={handleInputChange}
               />
            </div>
           <div className="mb-4">
-            <label htmlFor="message" className="block text-gray-700 font-bold mb-2">
+            <label htmlFor="message" className="block font-body text-body mb-2">
               Message
             </label>
             <textarea
               id="message"
               name="message"
               rows="5"
-              className="w-full border-gray-400 border-2 py-2 px-4 rounded-md focus:outline-none focus:border-primary-500"
+              className="w-full text-black  border-2 py-2 px-4 rounded-md focus:outline-none focus:border-primary-500"
               placeholder="How can we help you?"
               value={formData.message}
               onChange={handleInputChange}
@@ -105,7 +105,7 @@ function Contact() {
           <div className="text-center">
             <button
               type="submit"
-              className="bg-primary-500 text-white py-2 px-4 rounded-md hover:bg-primary-600 transition-colors duration-300"
+              className="bg-accenta hover:bg-background text-body font-body py-2 px-4 rounded-full transition-colors duration-300"
             >
               Send
             </button>

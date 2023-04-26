@@ -1,29 +1,28 @@
 module.exports = {
   mode: "jit",
-  purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+  purge: ["./src/**/*.{js,jsx,ts,tsx}","./src/**/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   theme: {
     extend: {
-      fonts: {
-        heading: {
-            family: "Fraunces",
-            weight: "medium"
-        },
-        body: {
-            family: "Epilogue",
-            weight: "regular",
-            color: "#EBECEF"
-        }
-      }
+      fontFamily: {
+              body: ['Epilogue', 'sans-serif'],
+              header : ['Fraunces', 'sans-serif']
+            },
+            fontWeight: {
+              body: 400,
+              header: 500
+            },
+            textColor: {
+                body: '#EBECEF',
+                header: '#FFFFFF',
+                accent: '#080e26'
+            },
+
       colors: {
-        background: {
-            500: '#a8afcc' //full page background
-        }
-        cardColor: {
-            500: '#080e26' //inner card color
-        }
-        accenta: {
-            500: '#8C98CA'
-        }
+        background: '#a8afcc',
+
+        cardcolor: '#080e26',
+        accenta:  '#8C98CA',
+
         primary: {
           50: '#f5f9f7',
           100: '#ebf3ef',
@@ -48,21 +47,21 @@ module.exports = {
           800: '#151515',
           900: '#101010',
         },
-        accent: {
-          50: '#fef6ee',
-          100: '#fcecd7',
-          200: '#f7d1aa',
-          300: '#f3b57d',
-          400: '#ea7f29',
-          500: '#d76f30',
-          600: '#c5652c',
-          700: '#a55123',
-          800: '#83401c',
-          900: '#6c3517',
-        },
+//        accent: {
+//          50: '#fef6ee',
+//          100: '#fcecd7',
+//          200: '#f7d1aa',
+//          300: '#f3b57d',
+//          400: '#ea7f29',
+//          500: '#d76f30',
+//          600: '#c5652c',
+//          700: '#a55123',
+//          800: '#83401c',
+//          900: '#6c3517',
+//        },
       },
     },
   },
     variants: {},
-    plugins: [],
+    plugins: []
 };
