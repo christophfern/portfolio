@@ -12,7 +12,7 @@ function Blog(props) {
           .then((data) => setArticles(data.articles))
           .catch((err) => {
             console.log(err)
-            setArticles(testData.articles)
+        //    setArticles(testData.articles)
          } );
     //setArticles(testData.articles);
   }, []);

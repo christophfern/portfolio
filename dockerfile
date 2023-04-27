@@ -1,7 +1,6 @@
 # Base image
 FROM openjdk:19-jdk-alpine
 
-RUN echo "hello world"
 # Set working directory
 WORKDIR /app
 

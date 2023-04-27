@@ -17,7 +17,7 @@ function App() {
 
 
        <Header />
-       <div className="bg-background mx-auto px-4 sm:px-6 lg:px-8 py-10 h-screen">
+       <div className="bg-background mx-auto px-4 sm:px-6 lg:px-8 py-10 min-h-screen">
        <Routes>
          <Route path="/" element={<Home />} />
          <Route path="/portfolio" element={<Portfolio />} />
