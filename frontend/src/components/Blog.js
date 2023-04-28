@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import testData from './test-data/blog-test-data.json';
-import { ApiEnum } from './enum/ApiEnum';
 import { apiUrl } from './config/Config';
 
 function Blog(props) {
@@ -12,10 +11,18 @@ function Blog(props) {
           .then((data) => setArticles(data.articles))
           .catch((err) => {
             console.log(err)
-        //    setArticles(testData.articles)
+            setArticles(testData.articles)
          } );
     //setArticles(testData.articles);
   }, []);
+
+  function truncateArticle(content) {
+    const firstXWords = content.split(' ');
+    if (firstXWords.length > 100) {
+        return firstXWords.slice(0,100).join(' ') + ' . . .';
+    }
+    return content;
+  }
 
   return (
     <div className="bg-cardcolor rounded-lg shadow-lg py-12 ">
@@ -24,7 +31,7 @@ function Blog(props) {
         <div className="bg-accenta p-8 rounded-lg shadow-lg mb-8">
           <h2 className="text-xl font-header text-accent text-center mb-4">Welcome to the Personal Articles section</h2>
           <p className="text-body font-body">
-            Here you will find a collection of Personal articles covering a wide range of topics, from programming and
+            Here you will find a collection of Personal articles coverI'm ing a wide range of topics, from programming and
             web development to data science and artificial intelligence. Our authors are experts in their fields, and we
             strive to provide you with the latest insights and best practices to help you succeed in your projects and
             career.
@@ -34,7 +41,7 @@ function Blog(props) {
           {articles.map((article) => (
             <div key={article.id} className="bg-white p-8 rounded-lg shadow-lg">
               <h2 className="text-2xl text-black font-bold mb-4 text-center">{article.title}</h2>
-              <p className="text-black">{article.content}</p>
+              <p className="text-black">{truncateArticle(article.content)}</p>
             </div>
           ))}
         </div>

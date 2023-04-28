@@ -2,24 +2,38 @@
   "articles": [
     {
       "id": 1,
-      "title": "A Beginner's Guide to React",
-      "content": "In this article, we'll explore the basics of React and how to build a simple web application using React.",
-      "author": "John Doe",
-      "date": "2022-01-01"
+      "title": "The Basics of Machine Learning",
+      "content": "Machine learning is a subset of artificial intelligence (AI) that focuses on developing algorithms and statistical models that enable computers to learn from data. In this article, we'll cover the basics of machine learning, including supervised and unsupervised learning, regression, and classification. We'll also explore some popular machine learning libraries and frameworks, such as scikit-learn and TensorFlow.",
+      "author": "Alice Johnson",
+      "date": "2022-04-01"
     },
     {
       "id": 2,
-      "title": "Introduction to Node.js",
-      "content": "Node.js is a powerful platform for building scalable and efficient server-side applications. In this article, we'll explore the basics of Node.js and how to get started with it.",
-      "author": "Jane Smith",
-      "date": "2022-02-01"
+      "title": "Building a RESTful API with Node.js",
+      "content": "RESTful APIs are a popular way to build web services that can be consumed by other applications or devices. In this article, we'll walk through the process of building a RESTful API with Node.js and Express, using MongoDB as our data store. We'll cover topics such as routing, middleware, and error handling, and show you how to test your API using tools like Postman.",
+      "author": "Bob Smith",
+      "date": "2022-05-01"
     },
     {
       "id": 3,
-      "title": "Advanced CSS Techniques",
-      "content": "CSS can be used to create stunning visual effects and layouts on the web. In this article, we'll explore some advanced techniques for working with CSS, including flexbox, grid, and animations.",
-      "author": "Bob Johnson",
-      "date": "2022-03-01"
+      "title": "Responsive Web Design with CSS Grid",
+      "content": "CSS Grid is a powerful layout system that allows you to create complex, responsive designs with ease. In this article, we'll explore some advanced techniques for working with CSS Grid, including grid-template-areas, grid-auto-flow, and grid-gap. We'll also show you how to create responsive designs that adapt to different screen sizes, using media queries and the minmax() function.",
+      "author": "Jane Williams",
+      "date": "2022-06-01"
+    },
+    {
+      "id": 4,
+      "title": "Getting Started with React Native",
+      "content": "React Native is a popular framework for building native mobile apps using JavaScript and React. In this article, we'll walk through the process of setting up a development environment for React Native, and building a simple mobile app that runs on both iOS and Android devices. We'll cover topics such as layout, navigation, and working with native modules.",
+      "author": "John Davis",
+      "date": "2022-07-01"
+    },
+    {
+      "id": 5,
+      "title": "Building a Real-time Chat Application with Socket.io",
+      "content": "Socket.io is a powerful library for building real-time web applications, such as chat rooms and online games. In this article, we'll walk through the process of building a real-time chat application with Socket.io and Node.js. We'll cover topics such as setting up a WebSocket server, handling messages, and broadcasting events to multiple clients. Socket.io is a powerful library for building real-time web applications, such as chat rooms and online games. In this article, we'll walk through the process of building a real-time chat application with Socket.io and Node.js. We'll cover topics such as setting up a WebSocket server, handling messages, and broadcasting events to multiple clients. Socket.io is a powerful library for building real-time web applications, such as chat rooms and online games. In this article, we'll walk through the process of building a real-time chat application with Socket.io and Node.js. We'll cover topics such as setting up a WebSocket server, handling messages, and broadcasting events to multiple clients. Socket.io is a powerful library for building real-time web applications, such as chat rooms and online games. In this article, we'll walk through the process of building a real-time chat application with Socket.io and Node.js. We'll cover topics such as setting up a WebSocket server, handling messages, and broadcasting events to multiple clients.  Socket.io is a powerful library for building real-time web applications, such as chat rooms and online games. In this article, we'll walk through the process of building a real-time chat application with Socket.io and Node.js. We'll cover topics such as setting up a WebSocket server, handling messages, and broadcasting events to multiple clients. Socket.io is a powerful library for building real-time web applications, such as chat rooms and online games. In this article, we'll walk through the process of building a real-time chat application with Socket.io and Node.js. We'll cover topics such as setting up a WebSocket server, handling messages, and broadcasting events to multiple clients.",
+      "author": "Sarah Brown",
+      "date": "2022-08-01"
     }
   ]
 }
