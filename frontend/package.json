@@ -19,7 +19,9 @@
   },
   "scripts": {
     "start": "react-scripts start .env.local",
-    "build:spring": "react-scripts build .env.production.local && rm -rf ../src/main/resources/static && mv build ../src/main/resources/static",
+    "build": "react-scripts build",
+    "build:move": "react-scripts build .env.production.local && rm -rf ../src/main/resources/static && mv build ../src/main/resources/static",
+    "build:spring": "react-scripts build .env.production.local",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

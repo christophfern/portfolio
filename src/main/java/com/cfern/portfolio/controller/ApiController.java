@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class ApiController {
 
+  // CHECKSTYLE:OFF
   public static String BlOG_TEST_DATA = """
       {
         "articles": [

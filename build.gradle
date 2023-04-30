@@ -1,5 +1,4 @@
 plugins {
-	id 'checkstyle'
 	id 'java'
 	id 'org.springframework.boot' version '3.0.6'
 	id 'io.spring.dependency-management' version '1.1.0'
@@ -25,8 +24,6 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.hibernate.validator:hibernate-validator:8.0.0.Final'
-
-//	implementation 'com.amazonaws:aws-java-sdk-s3:1.12.452'
 	implementation 'com.amazonaws:aws-java-sdk:1.12.452'
 
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -35,6 +32,9 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 }
+
+bootJar.dependsOn ':frontend:buildWebApp'
+
 
 tasks.named('test') {
 	useJUnitPlatform()
