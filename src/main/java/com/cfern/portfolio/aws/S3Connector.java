@@ -5,6 +5,9 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.ListObjectsV2Request;
 import com.amazonaws.services.s3.model.ListObjectsV2Result;
+import com.amazonaws.services.s3.model.S3ObjectSummary;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -38,6 +41,7 @@ public class S3Connector {
         .build();
   }
 
+
   /**
    * uploads a file to S3.
    *
@@ -53,11 +57,23 @@ public class S3Connector {
    *
    * @param folderPath the prefix to get all files from
    */
-  public void getFilesForPrefix(String folderPath) {
+  public List<S3ObjectSummary> getFilesForPrefix(String folderPath) {
     ListObjectsV2Request request = new ListObjectsV2Request();
     request.setBucketName(bucketName);
     request.setPrefix(folderPath);
-    ListObjectsV2Result result = s3Client.listObjectsV2(request);
+    ListObjectsV2Result result;
+    List<S3ObjectSummary> objects = new ArrayList();
+    do {
+      result = s3Client.listObjectsV2(request);
+      objects.addAll(result.getObjectSummaries());
+      // Process the list of objects here
+      for (S3ObjectSummary object : objects) {
+        System.out.println(object.getKey());
+      }
+      request.setContinuationToken(result.getNextContinuationToken());
+    } while (result.isTruncated());
+
+    return objects;
 
   }
 

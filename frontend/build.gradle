@@ -21,15 +21,15 @@ task buildWebApp(type: NpmTask) {
     outputs.dir('build')
 }
 
-task packageWebApp(type: Jar, dependsOn: buildWebApp ) {
-    from fileTree('./build') {
-        include '**/*.js'
-        include '**/*.css'
-        include '**/*.html'
-    }
-    archiveBaseName = 'frontend'
-    archiveVersion = '1.0-SNAPSHOT'
-}
+//task packageWebApp(type: Jar, dependsOn: buildWebApp ) {
+//    from fileTree('./build') {
+//        include '**/*.js'
+//        include '**/*.css'
+//        include '**/*.html'
+//    }
+//    archiveBaseName = 'frontend'
+//    archiveVersion = '1.0-SNAPSHOT'
+//}
 
 
 node {
