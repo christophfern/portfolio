@@ -47,7 +47,7 @@ public class ContactMeMessageService {
                                  @NonNull SnsConnector snsConnector,
                                  @NonNull ObjectMapper objectMapper,
                                  @NonNull @Value("${aws.s3.bucket.contactme.prefix}")
-                                     String prefix) {
+                                 String prefix) {
     this.s3Connector = s3Connector;
     this.snsConnector = snsConnector;
     this.objectMapper = objectMapper;

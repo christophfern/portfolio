@@ -3,14 +3,19 @@ package com.cfern.portfolio.aws;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.*;
+import com.amazonaws.services.s3.model.CopyObjectRequest;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
+import com.amazonaws.services.s3.model.GetObjectRequest;
+import com.amazonaws.services.s3.model.ListObjectsV2Request;
+import com.amazonaws.services.s3.model.ListObjectsV2Result;
+import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.cfern.portfolio.entity.S3CopyObject;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * The connector for S3.
@@ -62,8 +67,8 @@ public class S3Connector {
     try {
       log.info("Getting all files for prefix: {}", folderPath);
       ListObjectsV2Request request = new ListObjectsV2Request()
-              .withBucketName(bucketName)
-              .withPrefix(folderPath);
+          .withBucketName(bucketName)
+          .withPrefix(folderPath);
       ListObjectsV2Result result;
 
       do {
@@ -77,7 +82,8 @@ public class S3Connector {
         request.setContinuationToken(result.getNextContinuationToken());
       } while (result.isTruncated());
     } catch (Exception e) {
-      log.error("Something went wrong trying to get files with prefix {} in bucket {}", folderPath, bucketName);
+      log.error("Something went wrong trying to get files with prefix {} in bucket {}", folderPath,
+          bucketName);
     }
     return objects;
   }
@@ -89,19 +95,21 @@ public class S3Connector {
   }
 
   public void moveObject(S3CopyObject s3CopyObject) {
-    log.info("Moving object from {} to {}. This requires a copy and a delete", s3CopyObject.getSource(), s3CopyObject.getDestination());
+    log.info("Moving object from {} to {}. This requires a copy and a delete",
+        s3CopyObject.getSource(), s3CopyObject.getDestination());
     copyObject(s3CopyObject);
     deleteObject(s3CopyObject);
   }
 
   public void copyObject(S3CopyObject s3CopyObject) {
     try {
-      log.info("Copying object from {} to {}.", s3CopyObject.getSource(), s3CopyObject.getDestination());
+      log.info("Copying object from {} to {}.", s3CopyObject.getSource(),
+          s3CopyObject.getDestination());
       CopyObjectRequest copyObjectRequest = new CopyObjectRequest()
-              .withDestinationKey(s3CopyObject.getDestination())
-              .withSourceKey(s3CopyObject.getSource())
-              .withSourceBucketName(bucketName)
-              .withDestinationBucketName(bucketName);
+          .withDestinationKey(s3CopyObject.getDestination())
+          .withSourceKey(s3CopyObject.getSource())
+          .withSourceBucketName(bucketName)
+          .withDestinationBucketName(bucketName);
       s3Client.copyObject(copyObjectRequest);
     } catch (Exception e) {
       log.error("Something went wrong when trying to copy object {}", s3CopyObject, e);
@@ -111,7 +119,8 @@ public class S3Connector {
   public void deleteObject(S3CopyObject s3CopyObject) {
     try {
       log.info("Deleting object from {}.", s3CopyObject.getSource());
-      DeleteObjectRequest deleteObjectRequest = new DeleteObjectRequest(bucketName, s3CopyObject.getSource());
+      DeleteObjectRequest deleteObjectRequest =
+          new DeleteObjectRequest(bucketName, s3CopyObject.getSource());
       s3Client.deleteObject(deleteObjectRequest);
     } catch (Exception e) {
       log.error("Something went wrong when trying to delete object {}", s3CopyObject, e);

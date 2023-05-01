@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class S3CopyObject {
 
-    private String source;
+  private String source;
 
-    private String destination;
+  private String destination;
 }
