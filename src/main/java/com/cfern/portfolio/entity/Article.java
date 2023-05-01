@@ -1,4 +1,4 @@
-package com.cfern.portfolio.http.response;
+package com.cfern.portfolio.entity;
 
 import lombok.Data;
 

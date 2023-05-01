@@ -3,22 +3,20 @@ package com.cfern.portfolio.controller;
 import com.cfern.portfolio.http.request.ContactMeRequest;
 import com.cfern.portfolio.http.response.BlogResponse;
 import com.cfern.portfolio.service.ContactMeMessageService;
+import com.cfern.portfolio.service.S3PersonalArticleService;
+import com.cfern.portfolio.service.S3TechnicalArticleService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Main controller for the all endpoints that are exposed to the front end.
@@ -26,40 +24,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/api")
 @RequiredArgsConstructor
+@Slf4j
 public class ApiController {
 
-  // CHECKSTYLE:OFF
-  public static String BlOG_TEST_DATA = """
-      {
-        "articles": [
-          {
-            "id": 1,
-            "title": "A Beginner's Guide to React",
-            "content": "In this article, we'll explore the basics of React and how to build a simple web application using React.",
-            "author": "John Doe",
-            "date": "2022-01-01"
-          },
-          {
-            "id": 2,
-            "title": "Introduction to Node.js",
-            "content": "Node.js is a powerful platform for building scalable and efficient server-side applications. In this article, we'll explore the basics of Node.js and how to get started with it.",
-            "author": "Jane Smith",
-            "date": "2022-02-01"
-          },
-          {
-            "id": 3,
-            "title": "Advanced CSS Techniques",
-            "content": "CSS can be used to create stunning visual effects and layouts on the web. In this article, we'll explore some advanced techniques for working with CSS, including flexbox, grid, and animations.",
-            "author": "Bob Johnson",
-            "date": "2022-03-01"
-          }
-        ]
-      }
-      """;
   @NonNull
   private final ObjectMapper mapper;
   @NonNull
   private final ContactMeMessageService contactMeMessageService;
+  @NonNull
+  private final S3TechnicalArticleService technicalArticleService;
+  @NonNull
+  private final S3PersonalArticleService personalArticleService;
 
   /**
    * Default handler for all requests that do not match an endpoint that has been created.
@@ -85,6 +60,7 @@ public class ApiController {
   @PostMapping("/post-contact-me/v0")
   public ResponseEntity<Void> postContactMe(HttpServletRequest request,
                                             @RequestBody @Valid ContactMeRequest requestBody) {
+    log.info("Received post request to contact-me: {}", requestBody);
     ResponseEntity<Void> response = new ResponseEntity<>(HttpStatus.CREATED);
     contactMeMessageService.processContactMeMessage(requestBody);
     return response;
@@ -97,13 +73,14 @@ public class ApiController {
    */
   @GetMapping("/get-technical-articles/v0")
   public ResponseEntity<BlogResponse> getTechnicalPortfolio() throws JsonProcessingException {
-    BlogResponse blogResponse = mapper.readValue(BlOG_TEST_DATA, BlogResponse.class);
+    log.info("Received get request for get-technical-articles");
     HttpHeaders httpHeaders = new HttpHeaders();
     httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-    httpHeaders.add("Access-Control-Allow-Origin", "*");
-    ResponseEntity<BlogResponse> response =
-        new ResponseEntity<>(blogResponse, httpHeaders, HttpStatus.OK);
-    return response;
+
+    BlogResponse blogResponse = new BlogResponse();
+    blogResponse.setArticles(technicalArticleService.getPublishedArticles());
+
+    return new ResponseEntity<>(blogResponse, httpHeaders, HttpStatus.OK);
   }
 
   /**
@@ -113,12 +90,14 @@ public class ApiController {
    */
   @GetMapping("/get-personal-articles/v0")
   public ResponseEntity<BlogResponse> getPersonalPortfolio() throws JsonProcessingException {
-    BlogResponse blogResponse = mapper.readValue(BlOG_TEST_DATA, BlogResponse.class);
+    log.info("Received get request for get-personal-articles");
+
     HttpHeaders httpHeaders = new HttpHeaders();
     httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-    httpHeaders.add("Access-Control-Allow-Origin", "*");
-    ResponseEntity<BlogResponse> response =
-        new ResponseEntity<>(blogResponse, httpHeaders, HttpStatus.OK);
-    return response;
+
+    BlogResponse blogResponse = new BlogResponse();
+    blogResponse.setArticles(personalArticleService.getPublishedArticles());
+
+    return new ResponseEntity<>(blogResponse, httpHeaders, HttpStatus.OK);
   }
 }

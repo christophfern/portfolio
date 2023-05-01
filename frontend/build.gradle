@@ -2,17 +2,22 @@ plugins {
     id "com.github.node-gradle.node" version "3.1.1"
 }
 
-task cleanWebApp() {
-    exec{
-        commandLine 'rm', '-rf', 'build'
-    }
-    exec{
-        commandLine 'rm', '-rf', '.gradle'
-    }
+//tasks.register('cleanWebApp') {
+//
+//    if (project.file('build').exists()) {
+//        exec {
+//            commandLine 'rm -rf build'
+//        }
+//    }
+//
+//    if (project.file('.gradle').exists()) {
+//        exec {
+//            commandLine 'rm -rf .gradle'
+//        }
+//    }
+//}
 
-}
-
-task buildWebApp(type: NpmTask) {
+tasks.register('buildWebApp', NpmTask) {
     dependsOn "npmInstall"
     inputs.files('package.json', 'package-lock.json')
     inputs.dir('src')
@@ -20,16 +25,6 @@ task buildWebApp(type: NpmTask) {
     args = ["run", "build:spring"]
     outputs.dir('build')
 }
-
-//task packageWebApp(type: Jar, dependsOn: buildWebApp ) {
-//    from fileTree('./build') {
-//        include '**/*.js'
-//        include '**/*.css'
-//        include '**/*.html'
-//    }
-//    archiveBaseName = 'frontend'
-//    archiveVersion = '1.0-SNAPSHOT'
-//}
 
 
 node {

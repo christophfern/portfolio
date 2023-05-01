@@ -1,7 +1,9 @@
 package com.cfern.portfolio.http.response;
 
-import java.util.List;
+import com.cfern.portfolio.entity.Article;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * Base class for a blog response.
