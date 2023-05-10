@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
  * Parent class for the articles services.
  */
 @Slf4j
-public class S3ArticlesService {
+public class ArticlesService {
 
     private final String prefix;
 
@@ -32,8 +32,8 @@ public class S3ArticlesService {
      * @param s3Connector   our connector
      * @param articlesCache the cash saving cache
      */
-    public S3ArticlesService(@NonNull String prefix, @NonNull S3Connector s3Connector,
-                             @NonNull ArticlesCache articlesCache) {
+    public ArticlesService(@NonNull String prefix, @NonNull S3Connector s3Connector,
+                           @NonNull ArticlesCache articlesCache) {
         this.prefix = prefix;
         this.s3Connector = s3Connector;
         this.articlesCache = articlesCache;
@@ -44,8 +44,9 @@ public class S3ArticlesService {
      *
      * @return the articles
      */
-    public List<Article> getNewArticles() {
+    public List<Article> processNewArticles() {
         log.info("Retrieving new {} articles", prefix);
+
         String fullPrefix = "blogs/" + prefix + "/new/";
         List<S3Object> s3Objects = s3Connector.getFilesForPrefix(fullPrefix);
 
@@ -70,7 +71,9 @@ public class S3ArticlesService {
         log.info("Retrieving published {} articles", prefix);
 
         if (articlesCache.containsKey(prefix)) {
-            return articlesCache.get(prefix);
+            List<Article> articles = articlesCache.get(prefix);
+            log.info("There were {} published articles found", articles.size());
+            return articles;
         }
 
         String fullPrefix = "blogs/" + prefix + "/published/";

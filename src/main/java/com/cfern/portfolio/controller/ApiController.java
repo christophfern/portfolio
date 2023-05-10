@@ -3,12 +3,13 @@ package com.cfern.portfolio.controller;
 import com.cfern.portfolio.http.request.ContactMeRequest;
 import com.cfern.portfolio.http.response.BlogResponse;
 import com.cfern.portfolio.service.ContactMeMessageService;
-import com.cfern.portfolio.service.S3PersonalArticleService;
-import com.cfern.portfolio.service.S3TechnicalArticleService;
+import com.cfern.portfolio.service.PersonalArticleService;
+import com.cfern.portfolio.service.TechnicalArticleService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,9 +39,9 @@ public class ApiController {
   @NonNull
   private final ContactMeMessageService contactMeMessageService;
   @NonNull
-  private final S3TechnicalArticleService technicalArticleService;
+  private final TechnicalArticleService technicalArticleService;
   @NonNull
-  private final S3PersonalArticleService personalArticleService;
+  private final PersonalArticleService personalArticleService;
 
   /**
    * Default handler for all requests that do not match an endpoint that has been created.
@@ -82,7 +83,8 @@ public class ApiController {
     log.info("Received get request for get-technical-articles");
     HttpHeaders httpHeaders = new HttpHeaders();
     httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-
+    httpHeaders.setAccessControlAllowHeaders(List.of("*"));
+    httpHeaders.setAccessControlAllowOrigin("*");
     BlogResponse blogResponse = new BlogResponse();
     blogResponse.setArticles(technicalArticleService.getPublishedArticles());
 
@@ -100,7 +102,8 @@ public class ApiController {
 
     HttpHeaders httpHeaders = new HttpHeaders();
     httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-
+    httpHeaders.setAccessControlAllowHeaders(List.of("*"));
+    httpHeaders.setAccessControlAllowOrigin("*");
     BlogResponse blogResponse = new BlogResponse();
     blogResponse.setArticles(personalArticleService.getPublishedArticles());
 

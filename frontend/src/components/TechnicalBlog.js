@@ -2,19 +2,25 @@ import React, { useState, useEffect } from 'react';
 import testData from './test-data/blog-test-data.json';
 import { apiUrl } from './config/Config';
 
-function Blog(props) {
-  const [articles, setArticles] = useState([]);
-  const [resourcePath, setResourcePath] = useState(props.url)
-  useEffect(() => {
-        fetch(apiUrl(resourcePath))
-          .then((res) => res.json())
-          .then((data) => setArticles(data.articles))
-          .catch((err) => {
-            console.log(err)
-            setArticles(testData.articles)
-         } );
-    //setArticles(testData.articles);
-  }, [articles]);
+function TechnicalBlog(props) {
+     const [articles, setArticles] = useState([]);
+
+     async function getArticles() {
+      const response = await fetch(apiUrl(props.url));
+      console.log(response);
+
+      if (response.status === 200) {
+        const jsonResponse = await response.json();
+        setArticles(jsonResponse.articles);
+      } else {
+        console.error("Error with request");
+        //TODO remove this
+        setArticles(testData.articles);
+      }
+     }
+     useEffect(() => {
+        getArticles();
+     }, []);
 
   function truncateArticle(content) {
     const firstXWords = content.split(' ');
@@ -27,7 +33,7 @@ function Blog(props) {
   return (
     <div className="bg-cardcolor rounded-lg shadow-lg py-12 ">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-header text-header mb-8 text-center">Personal Articles</h1>
+        <h1 className="text-3xl font-header text-header mb-8 text-center">Technical Articles</h1>
         <div className="bg-accenta p-8 rounded-lg shadow-lg mb-8">
           <h2 className="text-xl font-header text-accent text-center mb-4">Welcome to the Personal Articles section</h2>
           <p className="text-body font-body">
@@ -50,4 +56,4 @@ function Blog(props) {
   );
 }
 
-export default Blog;
+export default TechnicalBlog;

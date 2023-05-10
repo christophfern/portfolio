@@ -23,6 +23,7 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
 	implementation 'org.hibernate.validator:hibernate-validator:8.0.0.Final'
 	implementation 'com.amazonaws:aws-java-sdk:1.12.452'
 

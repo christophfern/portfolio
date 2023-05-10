@@ -29,7 +29,11 @@ public class ArticlesCache {
     }
 
     public List<Article> get(String key) {
-        return cache.get(key);
+        if (cache.containsKey(key)) {
+            log.info("ArticleCache hit for key: '{}'", key);
+            return cache.get(key);
+        }
+        throw new RuntimeException(String.format("Key: '%s' does not exist in cache", key));
     }
 
     public boolean containsKey(String key) {
