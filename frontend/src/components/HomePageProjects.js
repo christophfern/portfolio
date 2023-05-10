@@ -8,9 +8,9 @@ function HomePage() {
       <div className="flex justify-center align-center">
         <FeaturedProject
         title="This Project!"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam bibendum elit non mauris placerat, a lacinia nibh euismod. Fusce euismod aliquam enim, a volutpat velit tincidunt non."
-        buttonText="Learn More"
-        link=""
+        description="I developed this entire project, which features a static React frontend deployed on top of a Spring Boot backend running on a Spring Boot server. The project is hosted on Google Cloud and utilizes AWS for file storage. My goal was to minimize expenses. Head to the GitHub to learn more."
+        buttonText="GitHub"
+        link="https://github.com/christophfern/portfolio"
         />
       </div>
     </div>

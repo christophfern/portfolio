@@ -13,9 +13,10 @@ function Portfolio() {
           <div class="flex flex-wrap -mx-2">
 
             <Experience
-                title="Web Developer"
-                company="ABC Company"
-                workedYears='January 2020 - Present'
+                title="Software Engineer"
+                company="Avalon Health Care Solutions"
+                workedYears='November 2022 - Present'
+                link="https://www.avalonhcs.com/"
                 description='Description of job'
                 responsibilities={[
                 'Responsibility or accomplishment',
