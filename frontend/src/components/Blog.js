@@ -4,9 +4,9 @@ import { apiUrl } from './config/Config';
 
 function Blog(props) {
   const [articles, setArticles] = useState([]);
-
+  const [resourcePath, setResourcePath] = useState(props.url)
   useEffect(() => {
-        fetch(apiUrl(props.url))
+        fetch(apiUrl(resourcePath))
           .then((res) => res.json())
           .then((data) => setArticles(data.articles))
           .catch((err) => {
@@ -14,7 +14,7 @@ function Blog(props) {
             setArticles(testData.articles)
          } );
     //setArticles(testData.articles);
-  }, []);
+  }, [articles]);
 
   function truncateArticle(content) {
     const firstXWords = content.split(' ');

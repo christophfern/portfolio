@@ -76,12 +76,13 @@ public class S3ArticlesService {
         String fullPrefix = "blogs/" + prefix + "/published/";
         List<S3Object> s3Objects = s3Connector.getFilesForPrefix(fullPrefix);
         List<Article> articles = mapS3Objects(s3Objects);
-        log.info("There were {} new articles found", articles.size());
+        log.info("There were {} published articles found", articles.size());
 
         articlesCache.put(prefix, articles);
 
         return articles;
     }
+
 
     List<S3CopyObject> generateCopyObjects(List<S3Object> s3Objects) {
         List<S3CopyObject> copyObjects = new ArrayList<>();
