@@ -14,4 +14,7 @@ aws:
         prefix: messages/
   sns:
     contactme:
-      sns: arn:aws:sns:us-east-1:819886478379:contact-me-message
+      arn: arn:aws:sns:us-east-1:819886478379:contact-me-message
+  sqs:
+    technical:
+      url: https://sqs.us-east-1.amazonaws.com/819886478379/new-technical-article-queue

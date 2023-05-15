@@ -2,7 +2,7 @@ package com.cfern.portfolio.aws;
 
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.sns.AmazonSNS;
-import com.amazonaws.services.sns.AmazonSNSClientBuilder;
+import com.amazonaws.services.sns.AmazonSNSAsyncClientBuilder;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -21,8 +21,8 @@ public class SnsConnector {
   @NonNull
   private final String topicArn;
 
-  public SnsConnector(@NonNull @Value("${aws.sns.contactme.sns}") String topicArn) {
-    this.snsClient = AmazonSNSClientBuilder.standard().withRegion(Regions.US_EAST_1).build();
+  public SnsConnector(@NonNull @Value("${aws.sns.contactme.arn}") String topicArn) {
+    this.snsClient = AmazonSNSAsyncClientBuilder.standard().withRegion(Regions.US_EAST_1).build();
     this.topicArn = topicArn;
   }
 

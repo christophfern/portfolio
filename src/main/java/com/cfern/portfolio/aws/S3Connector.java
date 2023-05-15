@@ -1,8 +1,6 @@
 package com.cfern.portfolio.aws;
 
-import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.CopyObjectRequest;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.GetObjectRequest;
@@ -13,6 +11,7 @@ import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.cfern.portfolio.entity.S3CopyObject;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -26,6 +25,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class S3Connector {
 
+
   private final String bucketName;
 
   private final AmazonS3 s3Client;
@@ -35,15 +35,14 @@ public class S3Connector {
    *
    * @param bucketName the name of the bucket to connect to
    */
-  public S3Connector(@Value("${aws.s3.bucket.name:\"\"}") String bucketName) {
+  public S3Connector(@Value("${aws.s3.bucket.name:\"\"}") String bucketName,
+                     @NonNull AmazonS3 s3Client) {
     if (bucketName == null || bucketName.isEmpty()) {
       throw new IllegalArgumentException("Please provide a bucket name");
     }
 
     this.bucketName = bucketName;
-    this.s3Client = AmazonS3ClientBuilder.standard()
-        .withRegion(Regions.US_EAST_1)
-        .build();
+    this.s3Client = s3Client;
   }
 
 
